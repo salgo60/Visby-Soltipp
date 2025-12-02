@@ -33,10 +33,33 @@ body {
   color: #fff;
 }
 
+/* Logotyp + namn */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+.logo-text {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+/* (gamla .logo-klassen kan ligga kvar ifall den används någon annanstans) */
 .logo {
   font-weight: 700;
   letter-spacing: 0.04em;
 }
+
+/* Navigation */
 
 .nav a {
   color: #e5e7eb;
@@ -118,7 +141,8 @@ body {
 
 /* Lists */
 
-.section ul, .section ol {
+.section ul,
+.section ol {
   margin-top: 0.25rem;
   padding-left: 1.3rem;
 }
@@ -196,5 +220,9 @@ footer {
 @media (max-width: 640px) {
   .nav {
     display: none;
+  }
+
+  .topbar {
+    justify-content: center;
   }
 }
