@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Visby Soltipp – 3D-modell</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     html, body {
       margin: 0;
       height: 100%;
       overflow: hidden;
-      background: #041b25; /* matchar headern */
+      background: #041b25;
     }
     canvas {
       display: block;
@@ -26,124 +26,59 @@
   scene.background = new THREE.Color(0x041b25);
 
   const camera = new THREE.PerspectiveCamera(
-    50,
+    60,
     window.innerWidth / window.innerHeight,
     0.1,
-    1000
+    500
   );
-  camera.position.set(18, 14, 18);
+  camera.position.set(12, 10, 14);
 
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.shadowMap.enabled = true;
   document.body.appendChild(renderer.domElement);
 
-  // Kontroller
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.target.set(0, 0, 0);
   controls.update();
 
   // Ljus
-  const sun = new THREE.DirectionalLight(0xfff5e1, 1.2);
-  sun.position.set(10, 20, 5);
+  const ambient = new THREE.AmbientLight(0xffffff, 0.6);
+  scene.add(ambient);
+
+  const sun = new THREE.DirectionalLight(0xfff3cc, 1);
+  sun.position.set(10, 20, 10);
   sun.castShadow = true;
   scene.add(sun);
 
-  const ambient = new THREE.AmbientLight(0xffffff, 0.45);
-  scene.add(ambient);
-
-  // Mark (gräs mot havet)
-  const groundGeo = new THREE.PlaneGeometry(80, 80);
-  const groundMat = new THREE.MeshStandardMaterial({
-    color: 0x7fbf7f, // gotländskt grönt
-    roughness: 0.9
-  });
-  const ground = new THREE.Mesh(groundGeo, groundMat);
+  // Mark
+  const ground = new THREE.Mesh(
+    new THREE.PlaneGeometry(50, 50),
+    new THREE.MeshStandardMaterial({ color: 0x7fbf7f, roughness: 0.9 })
+  );
   ground.rotation.x = -Math.PI / 2;
   ground.receiveShadow = true;
   scene.add(ground);
 
-  // "Hav" i bakgrunden
-  const seaGeo = new THREE.PlaneGeometry(80, 40);
-  const seaMat = new THREE.MeshStandardMaterial({
-    color: 0x3b82f6,
-    roughness: 0.85,
-    metalness: 0.0
-  });
-  const sea = new THREE.Mesh(seaGeo, seaMat);
-  sea.rotation.x = -Math.PI / 2;
-  sea.position.set(0, -0.01, -40);
-  scene.add(sea);
+  // Solpanel
+  const panel = new THREE.Mesh(
+    new THREE.BoxGeometry(6, 0.2, 3),
+    new THREE.MeshStandardMaterial({ color: 0x1f2937, roughness: 0.4, metalness: 0.6 })
+  );
+  panel.position.y = 0.6;
+  panel.rotation.x = -Math.PI / 10;
+  panel.castShadow = true;
+  scene.add(panel);
 
-  // Solpanel-rader
-  const panelMat = new THREE.MeshStandardMaterial({
-    color: 0x1f2937, // mörk blågrå
-    roughness: 0.4,
-    metalness: 0.6
-  });
-  const frameMat = new THREE.MeshStandardMaterial({
-    color: 0xe5e7eb
-  });
+  // Battericontainer
+  const battery = new THREE.Mesh(
+    new THREE.BoxGeometry(3, 2, 1.5),
+    new THREE.MeshStandardMaterial({ color: 0xf9fafb, roughness: 0.3 })
+  );
+  battery.position.set(-4, 1, 0);
+  battery.castShadow = true;
+  scene.add(battery);
 
-  function addPanelRow(zPos) {
-    for (let i = 0; i < 6; i++) {
-      const baseGeo = new THREE.BoxGeometry(1.6, 0.1, 2.8);
-      const base = new THREE.Mesh(baseGeo, frameMat);
-      base.position.set(-8 + i * 3, 0.25, zPos);
-      base.castShadow = true;
-      base.receiveShadow = true;
-      scene.add(base);
-
-      const panelGeo = new THREE.BoxGeometry(1.5, 0.05, 2.7);
-      const panel = new THREE.Mesh(panelGeo, panelMat);
-      panel.position.set(-8 + i * 3, 0.55, zPos);
-      panel.rotation.x = -Math.PI / 10;
-      panel.castShadow = true;
-      scene.add(panel);
-    }
-  }
-
-  addPanelRow(4);
-  addPanelRow(0.5);
-  addPanelRow(-3);
-
-  // Battericontainrar
-  const battMat = new THREE.MeshStandardMaterial({
-    color: 0xf9fafb
-  });
-  function addBattery(x, z) {
-    const geo = new THREE.BoxGeometry(3.5, 2.2, 1.8);
-    const mesh = new THREE.Mesh(geo, battMat);
-    mesh.position.set(x, 1.1, z);
-    mesh.castShadow = true;
-    mesh.receiveShadow = true;
-    scene.add(mesh);
-  }
-  addBattery(6, 1);
-  addBattery(6, -2.5);
-
-  // “Stad” / siluett
-  const townMat = new THREE.MeshStandardMaterial({
-    color: 0xd1d5db,
-    roughness: 0.8
-  });
-  for (let i = 0; i < 8; i++) {
-    const h = 1 + Math.random() * 3;
-    const geo = new THREE.BoxGeometry(1, h, 1);
-    const b = new THREE.Mesh(geo, townMat);
-    b.position.set(-6 + i * 2, h / 2, -15 - Math.random() * 4);
-    b.castShadow = true;
-    scene.add(b);
-  }
-
-  // Liten “domkyrka”-känsla
-  const towerGeo = new THREE.BoxGeometry(1.2, 4, 1.2);
-  const tower = new THREE.Mesh(towerGeo, new THREE.MeshStandardMaterial({ color: 0xfbbf24 }));
-  tower.position.set(5, 2, -18);
-  tower.castShadow = true;
-  scene.add(tower);
-
-  // Animering
   function animate() {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
