@@ -270,3 +270,9 @@ footer {
     height: 48px;
   }
 }
+
+.responsive-img {
+  width: 100%;
+  max-width: 700px;
+  height: auto;
+}
