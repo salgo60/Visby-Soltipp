@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Visby Soltipp – Solcellspark & Energigemenskap</title>
   <link rel="stylesheet" href="style.css"/>
+
 </head>
 <body>
 
@@ -17,8 +18,9 @@
     <a href="#projektet">Projektet</a>
     <a href="#energigemenskap">Energigemenskap</a>
     <a href="#teknik">Teknik</a>
+    <a href="dc-kostnad.html">DC-nät & kostnader</a>
     <a href="#dokument">Dokument</a>
-    <a href="#kontakt">Kontakt</a>
+    <a href="press.html">Press & bilder</a>
   </nav>
 </header>
 
@@ -97,6 +99,37 @@
     </div>
   </div>
 </section>
+<section id="karta" class="section alt">
+  <div class="container">
+    <h2>Projektets läge</h2>
+
+    <p>
+      Visby Soltipp planeras vid Visby Österby, i anslutning till befintligt
+      industriområde. Kartan nedan visar ungefärligt läge.
+    </p>
+
+    <div id="map"></div>
+  </div>
+</section>
+
+<!-- Leaflet -->
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+  const map = L.map('map').setView([57.615, 18.28], 13);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap'
+  }).addTo(map);
+
+  L.marker([57.615, 18.28])
+    .addTo(map)
+    .bindPopup('<strong>Visby Soltipp</strong><br>Planerat projektområde');
+</script>
 
 <p align="center">
   <img src="img/batterilager_2.png" class="responsive-img" alt="Batterilager">
@@ -162,6 +195,9 @@
 <footer>
   <p>© 2025 Visby Soltipp – Solcellspark & Energigemenskap. Publicerad via GitHub Pages.</p>
 </footer>
-
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  const map = L.map('map').setView([57.615, 18.28], 13);
+</script>
 </body>
 </html>
