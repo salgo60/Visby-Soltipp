@@ -41,9 +41,6 @@
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
 
-  const controls = new THREE.OrbitControls(camera, renderer.domElement);
-  controls.target.set(0, 0, 0);
-  controls.update();
 
   // Ljus
   const ambient = new THREE.AmbientLight(0xffffff, 0.6);
@@ -78,10 +75,14 @@
   battery.position.set(-4, 1, 0);
   scene.add(battery);
 
-  function animate() {
-    requestAnimationFrame(animate);
-    renderer.render(scene, camera);
-  }
+function animate() {
+  requestAnimationFrame(animate);
+
+  // Lugn automatisk rotation
+  scene.rotation.y += 0.002;
+
+  renderer.render(scene, camera);
+}
   animate();
 
   window.addEventListener('resize', () => {
