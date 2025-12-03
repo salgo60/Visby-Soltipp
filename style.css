@@ -321,3 +321,30 @@ footer {
 .press-figure a:hover {
   text-decoration: underline;
 }
+.menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: white;
+}
+
+.mobile-nav {
+  display: flex;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    background: #041b25;
+    padding: 1rem;
+  }
+  .mobile-nav.open {
+    display: flex;
+  }
+}
