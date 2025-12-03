@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
-<!-- VERSION 2025-12-02 15:45 FORCE -->
   <meta charset="UTF-8">
   <title>Visby Soltipp – 3D-modell</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,9 +18,13 @@
 </head>
 <body>
 
-<script type="module">
-  import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
-  import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js';
+<!-- Three.js klassiskt (GLOBALT THREE-objekt, ingen import) -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/controls/OrbitControls.js"></script>
+
+<script>
+  // Kontroll: skriv ut version i konsolen
+  console.log('THREE version:', THREE.REVISION);
 
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x041b25);
@@ -36,10 +39,9 @@
 
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.shadowMap.enabled = true;
   document.body.appendChild(renderer.domElement);
 
-  const controls = new OrbitControls(camera, renderer.domElement);
+  const controls = new THREE.OrbitControls(camera, renderer.domElement);
   controls.target.set(0, 0, 0);
   controls.update();
 
@@ -49,35 +51,31 @@
 
   const sun = new THREE.DirectionalLight(0xfff3cc, 1);
   sun.position.set(10, 20, 10);
-  sun.castShadow = true;
   scene.add(sun);
 
   // Mark
   const ground = new THREE.Mesh(
     new THREE.PlaneGeometry(50, 50),
-    new THREE.MeshStandardMaterial({ color: 0x7fbf7f, roughness: 0.9 })
+    new THREE.MeshStandardMaterial({ color: 0x7fbf7f })
   );
   ground.rotation.x = -Math.PI / 2;
-  ground.receiveShadow = true;
   scene.add(ground);
 
   // Solpanel
   const panel = new THREE.Mesh(
     new THREE.BoxGeometry(6, 0.2, 3),
-    new THREE.MeshStandardMaterial({ color: 0x1f2937, roughness: 0.4, metalness: 0.6 })
+    new THREE.MeshStandardMaterial({ color: 0x1f2937 })
   );
   panel.position.y = 0.6;
   panel.rotation.x = -Math.PI / 10;
-  panel.castShadow = true;
   scene.add(panel);
 
   // Battericontainer
   const battery = new THREE.Mesh(
     new THREE.BoxGeometry(3, 2, 1.5),
-    new THREE.MeshStandardMaterial({ color: 0xf9fafb, roughness: 0.3 })
+    new THREE.MeshStandardMaterial({ color: 0xf9fafb })
   );
   battery.position.set(-4, 1, 0);
-  battery.castShadow = true;
   scene.add(battery);
 
   function animate() {
