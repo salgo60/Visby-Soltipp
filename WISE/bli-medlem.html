@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bli medlem – WISE Gotland</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <div class="logo">WISE Gotland</div>
+    <nav class="nav-links">
+      <a href="index.html">Hem</a>
+      <a href="projekt.html">Projekt</a>
+      <a href="om-oss.html">Om oss</a>
+      <a href="kontakt.html">Kontakt</a>
+      <a href="bli-medlem.html" class="cta-nav">Bli medlem</a>
+    </nav>
+  </div>
+</header>
+
+
+
+<section class="narrow">
+  <h1>Bli medlem i WISE Gotland – och bygg framtidens energi med oss</h1>
+  <p>
+    Genom att bli medlem i WISE Gotland blir du del av en energigemenskap
+    som äger och utvecklar solparker, batterilagring och framtidens
+    energilösningar på Gotland.
+  </p>
+
+  <div class="three-cards">
+    <div class="card">
+      <h3>1. Bli medlem</h3>
+      <p>Fyll i formuläret och bli del av Gotlands nya energigemenskap.</p>
+    </div>
+    <div class="card" id="andelar">
+      <h3>2. Köp andelar</h3>
+      <p>Varje andel motsvarar faktisk energiproduktion. Ju fler andelar, desto större nytta.</p>
+    </div>
+    <div class="card">
+      <h3>3. Ta del av energin & värdet</h3>
+      <p>Som medlem får du lägre energikostnader, ekonomisk återbäring och beslutsrätt.</p>
+    </div>
+  </div>
+
+  <h2 style="margin-top:40px;">Anmälan</h2>
+  <form>
+    <label>Namn<br><input type="text" name="name" required></label><br><br>
+    <label>E-post<br><input type="email" name="email" required></label><br><br>
+    <label>Personnummer/Företag<br><input type="text" name="id" required></label><br><br>
+    <label>Antal andelar<br><input type="number" name="shares" min="1"></label><br><br>
+    <label>Betalningsmetod<br>
+      <select name="payment">
+        <option value="">Välj betalningsmetod</option>
+        <option>Faktura</option>
+        <option>Autogiro</option>
+        <option>Kortbetalning</option>
+      </select>
+    </label><br><br>
+    <button class="cta-btn" type="submit">Skicka intresseanmälan</button>
+  </form>
+  <p style="margin-top:16px; font-size:0.9rem;">
+    Genom att skicka formuläret godkänner du att WISE Gotland behandlar dina uppgifter
+    för att kunna kontakta dig om medlemskap och andelsköp.
+  </p>
+</section>
+
+
+<footer>
+  © 2025 WISE Gotland – Lokal energi för en starkare region
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
