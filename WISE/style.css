@@ -1,70 +1,218 @@
+/* ----------------------------------------------------
+   WISE GOTLAND — PREMIUM THEME
+   Sexy modern color palette + cleaner UI
+----------------------------------------------------- */
 
-body { margin:0; font-family:Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif; color:#222; line-height:1.6; }
-h1,h2,h3 { font-weight:700; }
-section { padding:80px 20px; max-width:1200px; margin:auto; }
-a { color:#1976d2; }
+:root {
+  --primary: #2ECC71;
+  --primary-dark: #27AE60;
+  --accent: #1ABC9C;
+  --text-dark: #1B1F23;
+  --text-light: #555;
+  --bg-light: #F7F9FA;
+  --card-bg: #ffffff;
+  --shadow: 0 4px 14px rgba(0,0,0,0.08);
+  --radius: 12px;
+}
+
+/* Base */
+body {
+  margin:0;
+  background:var(--bg-light);
+  font-family:Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  color:var(--text-dark);
+  line-height:1.6;
+}
+
+h1,h2,h3 { font-weight:700; color:var(--text-dark); }
+p { color:var(--text-light); }
+
+section {
+  padding:90px 20px;
+  max-width:1200px;
+  margin:auto;
+}
 
 /* NAV */
-header { background:#ffffffdd; position:sticky; top:0; z-index:10; backdrop-filter:blur(10px); border-bottom:1px solid #eee; }
-.nav-inner { max-width:1200px; margin:auto; padding:10px 20px; display:flex; align-items:center; justify-content:space-between; }
-.logo { font-weight:700; }
-.nav-links a { margin-left:16px; text-decoration:none; font-weight:500; }
-.nav-links a.cta-nav { padding:8px 16px; border-radius:999px; background:#40c463; color:white; }
+header {
+  background:#ffffffdd;
+  backdrop-filter:blur(10px);
+  position:sticky;
+  top:0;
+  z-index:20;
+  border-bottom:1px solid #eee;
+}
+
+.nav-inner {
+  max-width:1200px;
+  margin:auto;
+  padding:14px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.nav-links a {
+  margin-left:20px;
+  text-decoration:none;
+  font-weight:500;
+  color:var(--text-dark);
+  transition:0.2s;
+}
+
+.nav-links a:hover {
+  color:var(--primary);
+}
+
+.nav-links .cta-nav {
+  padding:10px 20px;
+  border-radius:999px;
+  background:var(--primary);
+  color:white !important;
+  box-shadow:var(--shadow);
+}
+
+.nav-links .cta-nav:hover {
+  background:var(--primary-dark);
+}
 
 /* HERO */
 .hero {
   background:url('hero-placeholder.jpg') center/cover no-repeat;
-  padding:160px 20px;
+  padding:180px 20px;
   text-align:center;
   color:white;
   position:relative;
 }
+
 .hero::after {
-  content:""; position:absolute; inset:0; background:rgba(0,0,0,0.35);
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    rgba(0,0,0,0.35),
+    rgba(0,0,0,0.55)
+  );
 }
-.hero-content { position:relative; z-index:2; max-width:800px; margin:auto; }
-.hero p { font-size:1.1rem; }
+
+.hero-content {
+  position:relative;
+  z-index:2;
+  max-width:900px;
+  margin:auto;
+}
+
+.hero h1 {
+  font-size:3rem;
+  margin-bottom:20px;
+}
 
 .cta-btn {
-  display:inline-block; background:#40c463; padding:14px 28px; border-radius:999px;
-  color:white; font-weight:600; margin:10px; text-decoration:none;
+  display:inline-block;
+  background:var(--primary);
+  padding:16px 32px;
+  border-radius:999px;
+  color:white;
+  font-weight:600;
+  margin:10px;
+  text-decoration:none;
+  transition:0.25s;
+  box-shadow:var(--shadow);
 }
 
-/* GRID / CARDS */
-.three-cards, .why-grid, .project-grid {
-  display:grid; gap:32px; margin-top:40px;
+.cta-btn:hover {
+  background:var(--primary-dark);
+  transform:translateY(-2px);
 }
-.three-cards { grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); }
-.why-grid { grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); }
-.project-grid { grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); }
+
+/* CARDS */
 .card {
-  background:#f7f7f7; padding:24px; border-radius:10px;
-  box-shadow:0 2px 4px rgba(0,0,0,0.06);
+  background:var(--card-bg);
+  padding:28px;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  transition:0.25s;
 }
+
+.card:hover {
+  transform:translateY(-4px);
+  box-shadow:0 6px 18px rgba(0,0,0,0.12);
+}
+
+/* GRIDS */
+.three-cards,
+.why-grid,
+.project-grid {
+  display:grid;
+  gap:32px;
+  margin-top:40px;
+}
+
+.three-cards { grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); }
+.why-grid { grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); }
+.project-grid { grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); }
 
 /* TICKER */
-.ticker-container { display:flex; justify-content:space-around; flex-wrap:wrap; gap:40px; }
-.ticker-item { text-align:center; }
-.ticker-number { font-size:42px; font-weight:700; }
-.ticker-icon { font-size:32px; }
+.ticker-container {
+  display:flex;
+  justify-content:space-around;
+  flex-wrap:wrap;
+  gap:50px;
+  padding:40px 0;
+}
+
+.ticker-number {
+  font-size:48px;
+  font-weight:700;
+  color:var(--primary);
+}
+
+.ticker-icon {
+  font-size:36px;
+  margin-bottom:6px;
+}
 
 /* FORMS */
-form { max-width:600px; }
 input, textarea, select {
-  width:100%; padding:10px; margin-top:4px; border-radius:6px; border:1px solid #ccc; font-size:1rem;
+  width:100%;
+  padding:12px;
+  margin-top:6px;
+  border-radius:var(--radius);
+  border:1px solid #ccc;
+  font-size:1rem;
+  background:white;
+  transition:0.2s;
 }
-button { border:none; cursor:pointer; }
 
-/* LAYOUT UTIL */
+input:focus,
+textarea:focus,
+select:focus {
+  outline:none;
+  border-color:var(--primary);
+  box-shadow:0 0 0 3px rgba(46,204,113,0.25);
+}
+
+/* LAYOUT UTILS */
 .narrow { max-width:800px; }
-.two-col { display:grid; grid-template-columns:2fr 1.4fr; gap:40px; align-items:flex-start; }
+.two-col {
+  display:grid;
+  grid-template-columns:2fr 1.3fr;
+  gap:40px;
+  align-items:flex-start;
+}
+
 @media (max-width: 800px) {
   .two-col { grid-template-columns:1fr; }
+  .hero h1 { font-size:2.2rem; }
   section { padding:60px 16px; }
-  .hero { padding:120px 16px; }
 }
 
+/* FOOTER */
 footer {
-  background:#222; color:white; padding:40px; text-align:center;
+  background:var(--text-dark);
+  color:white;
+  padding:50px;
+  text-align:center;
   margin-top:80px;
+  font-size:0.95rem;
 }
