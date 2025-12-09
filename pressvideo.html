@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>WISE Gotland — Press</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  /* Minimal styling for the press page (overrides safe) */
+  .container{max-width:1100px;margin:32px auto;padding:0 16px;font-family:Arial,Helvetica,sans-serif}
+  h1{font-size:28px;margin-bottom:8px;color:#0b5e76}
+  p.lead{color:#555;margin-bottom:24px}
+  .videos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+  .video-card{background:#fff;border:1px solid #eee;border-radius:8px;padding:12px;box-shadow:0 2px 6px rgba(0,0,0,0.04)}
+  video{width:100%;height:auto;border-radius:6px;background:#000;display:block}
+  .meta{display:flex;justify-content:space-between;align-items:center;margin-top:10px;gap:12px;flex-wrap:wrap}
+  .meta .title{font-weight:600;color:#222}
+  .meta .actions a{margin-left:10px;text-decoration:none;color:#0b5e76}
+  .download{font-size:0.95em;color:#0b5e76}
+  .caption{font-size:0.92em;color:#666;margin-top:8px}
+  @media (max-width:420px){ h1{font-size:22px} }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Press & media — WISE Gotland</h1>
+    <p class="lead">Här finns visuellt material ni får använda i pressändamål. Klicka på en video för att spela, eller ladda ner filen för lokal uppspelning.</p>
+
+    <div class="videos-grid">
+      <!-- Visualiser2 -->
+      <div class="video-card" id="visualiser2-card">
+        <video
+          controls
+          preload="metadata"
+          poster="assets/img/visualiser2-poster.jpg"
+          aria-label="Visualiser 2 — WISE Gotland visualisering"
+        >
+          <source src="assets/media/Visualiser2.mp4" type="video/mp4">
+          Your browser does not support the video tag. You can <a href="assets/media/Visualiser2.mp4">download Visualiser2.mp4</a>.
+        </video>
+        <div class="meta">
+          <div class="title">Visualiser 2 — WISE Gotland</div>
+          <div class="actions">
+            <a class="download" href="assets/media/Visualiser2.mp4" download>Download .mp4</a>
+            <a class="download" href="#visualiser2-card" onclick="copyLink('assets/media/Visualiser2.mp4');return false;">Copy link</a>
+          </div>
+        </div>
+        <div class="caption">HD visualisation of the proposed Visby Soltipp layout. Contact press@wisegotland.example for higher-res files.</div>
+      </div>
+
+      <!-- Visualiser1 -->
+      <div class="video-card" id="visualiser1-card">
+        <video
+          controls
+          preload="metadata"
+          poster="assets/img/visualiser1-poster.jpg"
+          aria-label="Visualiser 1 — WISE Gotland visualisering"
+        >
+          <source src="assets/media/Visualiser1.mp4" type="video/mp4">
+          Your browser does not support the video tag. You can <a href="assets/media/Visualiser1.mp4">download Visualiser1.mp4</a>.
+        </video>
+        <div class="meta">
+          <div class="title">Visualiser 1 — WISE Gotland</div>
+          <div class="actions">
+            <a class="download" href="assets/media/Visualiser1.mp4" download>Download .mp4</a>
+            <a class="download" href="#visualiser1-card" onclick="copyLink('assets/media/Visualiser1.mp4');return false;">Copy link</a>
+          </div>
+        </div>
+        <div class="caption">Overview clip showing site integration and resilience features. For press kits, request higher bitrate versions.</div>
+      </div>
+    </div>
+
+    <hr style="margin:28px 0">
+    <p style="color:#777;font-size:0.95em">Need another format (webm/hevc/proxy)? Contact the media team at <a href="mailto:press@wisegotland.example">press@wisegotland.example</a></p>
+  </div>
+
+<script>
+  // small helper to copy link to clipboard (uses modern API)
+  function copyLink(path){
+    const full = location.origin + '/' + path.replace(/^\/+/,'');
+    if(navigator.clipboard){
+      navigator.clipboard.writeText(full).then(()=>alert('Link copied to clipboard: ' + full));
+    }else{
+      prompt('Copy the link below', full);
+    }
+  }
+</script>
+</body>
+</html>
