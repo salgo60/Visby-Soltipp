@@ -22,14 +22,13 @@
 </style>
 <script>
   // small helper to copy link to clipboard (uses modern API)
-  function copyLink(path){
-    const full = location.origin + '/' + path.replace(/^\/+/,'');
-    if(navigator.clipboard){
-      navigator.clipboard.writeText(full).then(()=>alert('Link copied to clipboard: ' + full));
-    }else{
-      prompt('Copy the link below', full);
-    }
-  }
+function copyLink(path) {
+  const base = location.origin + location.pathname.replace(/\/[^\/]*$/, '/');
+  const full = base + path.replace(/^\/+/, '');
+  navigator.clipboard
+    ? navigator.clipboard.writeText(full).then(() => alert('Link copied to clipboard: ' + full))
+    : prompt('Copy the link below', full);
+}
 </script>  
   
 </head>
