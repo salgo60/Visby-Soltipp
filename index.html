@@ -8,14 +8,6 @@
 
 </head>
 <body>
-<script>
-document.querySelector('.menu-toggle')
-  .addEventListener('click', () => {
-    document.querySelector('.mobile-nav')
-      .classList.toggle('open');
-});
-</script>
-
 <header class="topbar">
   <div class="brand">
     <img src="img/logga.png" alt="Visby Soltipp logotyp" class="logo-img" />
@@ -41,9 +33,24 @@ document.querySelector('.menu-toggle')
     <a href="#kontakt" class="cta">Jag vill veta mer</a>
   </div>
 </section>
-
 <main>
 
+<section class="hero">
+
+  <h2>Gott nytt</h2>
+  <p> Nu kör vi 2</p><p>
+  <img
+    src="img/2026.png"
+    class="hero-img fade-in"
+    alt="Gott Nytt År 2026"
+  >
+  <!-- Fullscreen overlay -->
+	<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+  	<img id="lightbox-img" src="" alt="">
+	</div>
+
+  </p>
+</section>
 <section id="projektet" class="section">
   <h2>Projektet</h2>
   <p>
@@ -209,6 +216,39 @@ document.querySelector('.menu-toggle')
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
   const map = L.map('map').setView([57.615, 18.28], 13);
+document.querySelector('.menu-toggle')
+  .addEventListener('click', () => {
+    document.querySelector('.mobile-nav')
+      .classList.toggle('open');
+});
+document.addEventListener('DOMContentLoaded', () => {
+
+  const menuToggle = document.querySelector('.menu-toggle');
+  const mobileNav = document.querySelector('.mobile-nav');
+
+  if (menuToggle && mobileNav) {
+    menuToggle.addEventListener('click', () => {
+      mobileNav.classList.toggle('open');
+    });
+  }
+
+  const heroImg = document.querySelector('.hero-img');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+
+  if (heroImg && lightbox && lightboxImg) {
+    heroImg.addEventListener('click', () => {
+      lightboxImg.src = heroImg.src;
+      lightbox.style.display = 'flex';
+    });
+  }
+
+});
+
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
+}
+
 </script>
 </body>
 </html>
